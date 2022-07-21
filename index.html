@@ -1,26 +1,55 @@
-<!DOCTYPE html>
+<!doctype html>
+<!--
+    Tangram: real-time WebGL rendering for OpenStreetMap
+
+    http://github.com/tangrams/tangram
+    http://mapzen.com
+-->
 <html>
+  <head>
+    <title>Simple demo – Tangram</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" />
 
-<head>
     <style>
-        /*Put the CSS here */
-        .button{
-            background-color: aqua;
+        body {
+            margin: 0px;
+            border: 0px;
+            padding: 0px;
         }
-    </style>
-</head>
 
-<body>
-    <h1>My First Interface !</h1>
-    <button id="firstbutton" class="button">Click on me !</button>
+        #map {
+            height: 100%;
+            width: 100%;
+            position: absolute;
+        }
+
+    </style>
+  </head>
+
+  <body>
+    <div id="map"></div>
+
+    <!-- leaflet -->
+    <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+
+    <!-- Main tangram library -->
+    <script src="https://unpkg.com/tangram/dist/tangram.min.js"></script>
+
+    <!-- Demo setup -->
     <script>
-        /*Put the javascript here */
-        let buttonAlert = document.getElementById("firstbutton");
-        buttonAlert.onclick = function(){
-            alert("you click on me !")
-        };
+
+        var map = L.map('map');
+
+        var tangramLayer = Tangram.leafletLayer({
+            scene: 'scene.yaml',
+            attribution: '<a href="https://mapzen.com/tangram" target="_blank">Tangram</a> | &copy; OSM contributors'
+        });
+
+        tangramLayer.addTo(map);
+
+        map.setView([40.70531887544228, -74.00976419448853], 15);
 
     </script>
-</body>
 
+  </body>
 </html>
